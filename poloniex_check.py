@@ -14,12 +14,23 @@ apiSecretFile = open("POLONIEX_SECRET", "r")
 apiSecret = apiSecretFile.read()
 apiSecretFile.close()
 
-print(apiKey)
-print(apiSecret)
+#print(apiKey)
+#print(apiSecret)
 
 # Create private API link
 polo = Poloniex(apiKey, apiSecret)
 
-## Testing private API link
-balances = polo.returnBalances()
-print(balances)
+# Testing private API link
+feeInfo = polo.returnFeeInfo()
+print feeInfo
+
+#Testing ticker function
+ticker = polo.returnTicker()["USDT_BTC"]
+print ticker
+
+# Get BTC and USDT balances
+btcBalance = polo.returnBalances()["BTC"]
+usdtBalance = polo.returnBalances()["USDT"]
+
+print "BTC Balance is: ", btcBalance
+print "USDT Balance is: ", usdtBalance
